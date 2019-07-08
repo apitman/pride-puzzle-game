@@ -9,12 +9,13 @@ public class playerMovement : MonoBehaviour
     private float targetY = 0;
     public int moveSpeed = 10;
     private float tileLength = 1;
+    public bool disableControls = false;
 
     // Update is called once per frame
     void Update()
     {
-        // Only accept player input after we stop moving
-        if (!isMoving) {
+        // Only accept player input after we stop moving and if we haven't won yet
+        if (!isMoving && !disableControls) {
             if (Input.GetKey("w") && !Input.GetKey("s")) {
                 // Move up
                 targetY = transform.position.y + tileLength;
@@ -45,7 +46,6 @@ public class playerMovement : MonoBehaviour
 
             if (xSpeed != 0 || ySpeed != 0) {
                 isMoving = true;
-                Debug.Log("Starting to move. Setting targetX to " + targetX + " and targetY to " + targetY);
             }
         }
 
@@ -57,7 +57,6 @@ public class playerMovement : MonoBehaviour
             // Check if we've gone too far and are ready to stop
             if ((xSpeed > 0 && transform.position.x > targetX) || (xSpeed < 0 && transform.position.x < targetX) || (ySpeed > 0 && transform.position.y > targetY) || (ySpeed < 0 && transform.position.y < targetY))
             {
-                Debug.Log("Attempting to stop at target");
                 transform.position = new Vector3(targetX, targetY, transform.position.z);
                 isMoving = false;
                 xSpeed = 0;

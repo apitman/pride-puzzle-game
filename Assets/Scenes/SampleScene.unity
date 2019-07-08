@@ -1550,6 +1550,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  disableControls: 0
+  oobLeft: -5
+  oobRight: 5
+  oobTop: 4
+  oobBottom: -4
 --- !u!1 &2030872424
 GameObject:
   m_ObjectHideFlags: 0

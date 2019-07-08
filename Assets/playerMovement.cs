@@ -10,6 +10,10 @@ public class playerMovement : MonoBehaviour
     public int moveSpeed = 10;
     private float tileLength = 1;
     public bool disableControls = false;
+    public float oobLeft = -5;
+    public float oobRight = 5;
+    public float oobTop = 4;
+    public float oobBottom = -4;
 
     // Update is called once per frame
     void Update()
@@ -20,12 +24,18 @@ public class playerMovement : MonoBehaviour
                 // Move up
                 targetY = transform.position.y + tileLength;
                 targetX = transform.position.x;
-                ySpeed = moveSpeed;
+                if (targetY < oobTop)
+                {
+                    ySpeed = moveSpeed;
+                }
             } else if (Input.GetKey("s") && !Input.GetKey("w")) {
                 // Move down
                 targetY = transform.position.y - tileLength;
                 targetX = transform.position.x;
-                ySpeed = -1 * moveSpeed;
+                if (targetY > oobBottom)
+                {
+                    ySpeed = -1 * moveSpeed;
+                }
             } else {
                 ySpeed = 0;
             }
@@ -34,12 +44,18 @@ public class playerMovement : MonoBehaviour
                 // Move left
                 targetX = transform.position.x - tileLength;
                 targetY = transform.position.y;
-                xSpeed = -1 * moveSpeed;
+                if (targetX > oobLeft)
+                {
+                    xSpeed = -1 * moveSpeed;
+                }
             } else if (Input.GetKey("d") && !Input.GetKey("a")) {
                 // Move right
                 targetX = transform.position.x + tileLength;
                 targetY = transform.position.y;
-                xSpeed = moveSpeed;
+                if (targetX < oobRight)
+                {
+                    xSpeed = moveSpeed;
+                }
             } else {
                 xSpeed = 0;
             }

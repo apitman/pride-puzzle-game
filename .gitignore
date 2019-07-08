@@ -34,3 +34,9 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Andrew's additions
+WebBuild/
+WebBuild.zip
+Logs/
+
